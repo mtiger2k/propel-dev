@@ -1,0 +1,11 @@
+{
+	"proxy":"http://web-proxy.atl.hpecorp.net:8080",
+    "http_proxy":"http://web-proxy.atl.hpecorp.net:8080",
+    "https_proxy":"http://web-proxy.atl.hpecorp.net:8080",
+    "no_proxy":"*.hp.com,*.hpeswlab.net,*.hpswlabs.adapps.hp.com,16.*,localhost,127.0.*",
+    "resolvers": [
+        "bower-art-resolver"
+    ],
+    "registry": "https://propelrepo.com:443/artifactory/api/bower/jumpstart-bower-virt",
+    "strict-ssl": false
+}

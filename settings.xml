@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <mirrors>
+    <mirror>
+      <id>nexus</id>
+      <mirrorOf>*</mirrorOf>
+      <url>http://ftct0035g.ftc.hpeswlab.net/nexus/content/groups/public</url>
+    </mirror>
+  </mirrors>
+  <servers>
+    <server>
+      <id>snapshots</id>
+      <username>deployment</username>
+      <password>deployment</password>
+    </server>
+    <server>
+      <id>releases</id>
+      <username>deployment</username>
+      <password>deployment</password>
+    </server>
+    <server>
+      <id>snapator.repo</id>
+      <username>deployment</username>
+      <password>deployment</password>
+    </server>
+    <server>
+      <id>releasator.repo</id>
+      <username>deployment</username>
+      <password>deployment</password>
+    </server>
+  </servers>
+  <proxies>
+    <proxy>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>web-proxy.sgp.hp.com</host>
+      <port>8088</port>
+      <nonProxyHosts>127.0.0.1|localhost|*.hpswlabs.adapps.hp.com|*.fc.usa.hp.com|*.hpeswlab.net</nonProxyHosts>
+    </proxy>
+  </proxies>
+  <pluginGroups>
+    <pluginGroup>org.jenkins-ci.tools</pluginGroup>
+  </pluginGroups>
+  <profiles>
+    <profile>
+      <id>localbuild</id>
+      <!--Enable snapshots for the built in central repo to direct -->
+      <!--all requests to nexus via the mirror -->
+      <repositories>
+        <repository>
+          <id>ftct0035g.ftc.hpeswlab.net</id>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+          <url>http://ftct0035g.ftc.hpeswlab.net:8081/nexus/content/groups/repositories</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>ftct0035g.ftc.hpeswlab.net</id>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+          <url>http://ftct0035g.ftc.hpeswlab.net:8081/nexus/content/groups/repositories/</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+    <!-- Give access to Jenkins plugins -->
+    <profile>
+      <id>jenkins</id>
+      <activation>
+        <activeByDefault>true</activeByDefault> <!-- change this to false, if you don't like to have it on per default -->
+      </activation>
+      <repositories>
+        <repository>
+          <id>repo.jenkins-ci.org</id>
+          <url>http://repo.jenkins-ci.org/public/</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>repo.jenkins-ci.org</id>
+          <url>http://repo.jenkins-ci.org/public/</url>
+          <releases>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+   
+  <activeProfiles>
+    <!--make the profile active all the time -->
+    <activeProfile>localbuild</activeProfile>
+  </activeProfiles>
+</settings>
